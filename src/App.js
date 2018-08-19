@@ -25,6 +25,15 @@ class App extends Component {
     )
   }
 
+  handleChange = (event) => {
+    this.setState(
+      {
+        [event.target.name] : event.target.value
+      }
+    )
+  }
+  
+
   onSigninClicked = () => {
     console.log("username is : " + this.state.userName + " password is : " + this.state.password)
   }
@@ -35,11 +44,11 @@ class App extends Component {
         <h1>Login Example</h1>
 
         <label htmlFor="userName">User Name</label>
-        <input type="text" id="userName" onChange={this.userNameChangedHandler} value={this.state.userName} />
+        <input type="text" id="userName" name="userName" onChange={this.handleChange} value={this.state.userName} />
         <br />
 
         <label htmlFor="password">Password</label>
-        <input type="password" id="password" onChange={this.passwordChangedHandler} value={this.state.password} />
+        <input type="password" id="password" name="password" onChange={this.handleChange} value={this.state.password} />
         <br />
 
         <button onClick={this.onSigninClicked}>Sign in</button>
