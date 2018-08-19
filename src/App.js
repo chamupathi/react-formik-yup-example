@@ -9,28 +9,24 @@ class App extends Component {
     password: ''
   }
 
-  userNameChangedHandler = (event) => {
-    this.setState(
-      {
-        userName: event.target.value
-      }
-    )
-  }
-
-  passwordChangedHandler = (event) => {
-    this.setState(
-      {
-        password: event.target.value
-      }
-    )
-  }
-
   handleChange = (event) => {
     this.setState(
       {
         [event.target.name] : event.target.value
       }
     )
+    this.validateFields()
+  }
+
+  validateFields = () => {
+
+    var errorMessage
+
+    this.state.password.length < 5 ? errorMessage = "password should be more than 5 chars" : errorMessage = null
+
+    this.setState({
+      passwordError:errorMessage
+    })
   }
   
 
@@ -49,6 +45,7 @@ class App extends Component {
 
         <label htmlFor="password">Password</label>
         <input type="password" id="password" name="password" onChange={this.handleChange} value={this.state.password} />
+        <p>{this.state.passwordError}</p>
         <br />
 
         <button onClick={this.onSigninClicked}>Sign in</button>
